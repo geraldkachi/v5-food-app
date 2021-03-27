@@ -1,6 +1,7 @@
 import React from 'react'
 import {createStackNavigator} from "@react-navigation/stack"
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs"
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
+// import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs"
 
 import  {MaterialCommunityIcons} from "react-native-vector-icons"
 
@@ -14,7 +15,8 @@ const DetailStack = createStackNavigator()
 const ProfileStack = createStackNavigator()
 const ExploreStack = createStackNavigator()
 
-const Tab = createMaterialBottomTabNavigator ()
+const Tab = createBottomTabNavigator ()
+// const Tab = createMaterialBottomTabNavigator ()
 
 const RoutesTab = () => (
     <Tab.Navigator initialRouteName="Feed" activeColor="#fff">

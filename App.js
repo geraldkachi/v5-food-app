@@ -161,7 +161,7 @@ const App = () => {
           } 
     //   setIsLoading(false);
     dispatch({ type: "REGISTER" , token: userToken })
-    }, 1000);
+    }, 3500);
   }, []);
 
   if (state.isLoading) {
