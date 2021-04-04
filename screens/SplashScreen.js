@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     logo:{
         width: height_logo,
         height: height_logo,
-        borderRsdius: 50
+        borderRadius: 50
     },  
     title:{
       color:"#05375a",

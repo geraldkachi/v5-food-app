@@ -90,6 +90,13 @@ const App = () => {
           userToken: action.token,
           isLoading: false,
         };
+      case "SIGUP":
+        return {
+          ...state,
+          userName: action.id,
+          userToken: action.token,
+          isLoading: false,
+        };
       case "LOGOUT":
         return {
           ...state,
@@ -103,7 +110,7 @@ const App = () => {
           userName: action.id,
           userToken: action.token,
           isLoading: false,
-        };
+        }
 
       default:
         return state;
@@ -111,7 +118,7 @@ const App = () => {
   };
 
   //  const [state, dispatch] = useReducer(loginReducer, initialLoginState, init)
-  const [state, dispatch] = useReducer(loginReducer, initialLoginState);
+  const [state, dispatch] = useReducer(loginReducer, initialLoginState)
 
   const authContext = useMemo(() => ({
       signIn: async(foundUser) => {
@@ -123,10 +130,10 @@ const App = () => {
             userToken = "geraldkachi";
             await AsyncStorage.setItem('userToken', userToken)
           } catch (e) {
-              console.log(e);
+              console.log(e)
           }
         // }
-        dispatch({ type: "LOGIN", id: userName, token: userToken });
+        dispatch({ type: "LOGIN", id: userName, token: userToken })
         // setUserToken("kachi")
         // setIsLoading(false)
       },
@@ -141,18 +148,29 @@ const App = () => {
         // setIsLoading(false);
         
       },
-      signUp: async() => {
+      signUp: async(foundUser) => {
+          const userToken = String(foundUser[0].userToken)
+          const userName = foundUser[0].username
+          // if (userName == "user" && password == "pass") {
+            try {
+              userToken = "geraldkachi";
+              await AsyncStorage.setItem('userToken', userToken)
+            } catch (e) {
+                console.log(e);
+            }
+          // }
+          dispatch({ type: "SIGUP", id: userName, token: userToken })
         // setUserToken("kachi");
         // setIsLoading(false);
       },
       toggleTheme: () => {
         setIsDarkTheme( isDarkTheme => !isDarkTheme)
       }
-    }), []);
+    }), [])
 
   useEffect(() => {
     setTimeout(async() => {
-        let userToken;
+        let userToken
         userToken = null
         try {
             userToken = await AsyncStorage.getItem('userToken')
@@ -169,7 +187,7 @@ const App = () => {
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <ActivityIndicator size="large" />
       </View>
-    );
+    )
   }
 
   return (
